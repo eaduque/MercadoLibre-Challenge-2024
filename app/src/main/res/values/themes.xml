@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-  <style name="Theme.MercadolibreChallenge" parent="android:Theme.Material.Light.NoActionBar" />
+  <style name="Theme.Meli" parent="android:Theme.Material.Light.NoActionBar">
+    <item name="android:statusBarColor">@color/meli_yellow_color</item>
+    <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+  </style>
+
+  <style name="Theme.Meli.Starting" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">@color/meli_yellow_color</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen_meli_icon</item>
+    <item name="postSplashScreenTheme">@style/Theme.Meli</item>
+  </style>
 </resources>
