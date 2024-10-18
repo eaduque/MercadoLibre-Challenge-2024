@@ -1,19 +1,17 @@
 plugins {
-  alias(libs.plugins.jetbrains.kotlin.android)
-  alias(libs.plugins.android.application)
-  alias(libs.plugins.compose.compiler)
+  alias(libs.plugins.meli.android.application)
+  alias(libs.plugins.meli.android.application.compose)
+  alias(libs.plugins.meli.android.application.flavors)
+  alias(libs.plugins.meli.android.hilt)
 }
 
 android {
   namespace = "co.com.mercadolibre"
-  compileSdk = 34
 
   defaultConfig {
     applicationId = "co.com.mercadolibre"
-    minSdk = 21
-    targetSdk = 34
     versionCode = 1
-    versionName = "1.0"
+    versionName = "1.0.0"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     vectorDrawables {
@@ -26,19 +24,6 @@ android {
       isMinifyEnabled = false
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
-  }
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-  }
-  kotlinOptions {
-    jvmTarget = "1.8"
-  }
-  buildFeatures {
-    compose = true
-  }
-  composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.1"
   }
   packaging {
     resources {
@@ -67,6 +52,7 @@ dependencies {
   androidTestImplementation(libs.androidx.espresso.core)
   androidTestImplementation(platform(libs.androidx.compose.bom))
   androidTestImplementation(libs.androidx.ui.test.junit4)
+
   debugImplementation(libs.androidx.ui.tooling)
   debugImplementation(libs.androidx.ui.test.manifest)
 }

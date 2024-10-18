@@ -1,6 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 pluginManagement {
+  includeBuild("build-logic")
   repositories {
     google {
       content {
@@ -23,4 +24,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Mercadolibre-Challenge"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
