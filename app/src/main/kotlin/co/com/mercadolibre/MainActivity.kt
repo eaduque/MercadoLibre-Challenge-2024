@@ -16,10 +16,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import co.com.mercadolibre.ui.MeliApp
 import co.com.mercadolibre.ui.rememberMeliAppState
 import co.com.mercadolibre.ui.theme.MeliTheme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
   private val viewModel: MainActivityViewModel by viewModels()
