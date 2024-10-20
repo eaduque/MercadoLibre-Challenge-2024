@@ -29,4 +29,10 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 
 include(":core:common")
+include(":core:data")
+include(":core:designsystem")
+include(":core:navigation")
 include(":core:network")
+
+include(":features:results")
+include(":features:search")

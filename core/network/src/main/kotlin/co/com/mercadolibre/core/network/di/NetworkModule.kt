@@ -2,6 +2,10 @@ package co.com.mercadolibre.core.network.di
 
 import co.com.mercadolibre.core.network.BuildConfig
 import co.com.mercadolibre.core.network.interceptors.NetworkMonitorInterceptor
+import co.com.mercadolibre.core.network.qualifiers.MeliBaseURL
+import co.com.mercadolibre.core.network.qualifiers.MeliBasicRetrofit
+import co.com.mercadolibre.core.network.qualifiers.MeliProdBaseURL
+import co.com.mercadolibre.core.network.qualifiers.MeliProdRetrofit
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,9 +23,15 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
 
+  @MeliBaseURL
   @Provides
   @Singleton
   fun providesBaseURL(): String = BuildConfig.MELI_BASE_URL
+
+  @MeliProdBaseURL
+  @Provides
+  @Singleton
+  fun providesProdBaseURL(): String = BuildConfig.MELI_PROD_BASE_URL
 
   @Provides
   @Singleton
@@ -37,12 +47,32 @@ internal object NetworkModule {
         }
       }
     )
-    .addInterceptor(NetworkMonitorInterceptor())
+    //.addInterceptor(NetworkMonitorInterceptor())
     .build()
 
+  @MeliBasicRetrofit
   @Provides
   @Singleton
-  fun provideRetrofit(baseUrl: String, json: Json, okHttpCallFactory: Call.Factory): Retrofit {
+  fun provideBaseRetrofit(
+    @MeliBaseURL baseUrl: String,
+    json: Json,
+    okHttpCallFactory: Call.Factory,
+  ): Retrofit {
+    return Retrofit.Builder()
+      .baseUrl(baseUrl)
+      .callFactory(okHttpCallFactory)
+      .addConverterFactory(json.asConverterFactory("application/json; charset=utf-8".toMediaType()))
+      .build()
+  }
+
+  @MeliProdRetrofit
+  @Provides
+  @Singleton
+  fun provideProdRetrofit(
+    @MeliProdBaseURL baseUrl: String,
+    json: Json,
+    okHttpCallFactory: Call.Factory,
+  ): Retrofit {
     return Retrofit.Builder()
       .baseUrl(baseUrl)
       .callFactory(okHttpCallFactory)

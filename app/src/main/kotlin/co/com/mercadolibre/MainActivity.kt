@@ -13,17 +13,21 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import co.com.mercadolibre.core.designsystem.theme.MeliTheme
+import co.com.mercadolibre.core.navigation.Navigator
+import co.com.mercadolibre.navigation.HandleNavigation
 import co.com.mercadolibre.ui.MeliApp
 import co.com.mercadolibre.ui.rememberMeliAppState
-import co.com.mercadolibre.ui.theme.MeliTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+  @Inject lateinit var navigator: Navigator
   private val viewModel: MainActivityViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +52,8 @@ class MainActivity : ComponentActivity() {
 
     setContent {
       val appState = rememberMeliAppState(uiState)
+
+      HandleNavigation(navigator, appState.navController)
 
       MeliTheme {
         MeliApp(appState = appState)

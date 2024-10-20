@@ -25,12 +25,12 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         add("implementation", project(":core:designsystem"))
 
         add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
-        add("implementation", libs.findLibrary("androidx.lifecycle.runtimeCompose").get())
-        add("implementation", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
+        add("implementation", libs.findLibrary("androidx.lifecycle.runtime.compose").get())
+        add("implementation", libs.findLibrary("androidx.lifecycle.viewmodel.compose").get())
 
         add(
           "androidTestImplementation",
-          libs.findLibrary("androidx.lifecycle.runtimeTesting").get()
+          libs.findLibrary("androidx.lifecycle.runtime.testing").get()
         )
       }
     }

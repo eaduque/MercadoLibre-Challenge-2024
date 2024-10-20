@@ -1,4 +1,4 @@
-package co.com.mercadolibre.ui.theme
+package co.com.mercadolibre.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

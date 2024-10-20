@@ -29,6 +29,7 @@ dependencies {
 
   api(projects.core.common)
   api(libs.retrofit.core)
+  api(projects.core.data)
   api(libs.retrofit.kotlin.serialization)
 
   implementation(libs.kotlinx.serialization.json)
