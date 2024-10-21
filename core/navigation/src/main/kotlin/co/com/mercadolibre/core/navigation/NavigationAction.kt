@@ -8,5 +8,5 @@ sealed class NavigationAction {
     val query: String? = null,
   ) : NavigationAction()
 
-  data object NavigateBack : NavigationAction()
+  data class NavigateBack(val time: Long = System.currentTimeMillis()) : NavigationAction()
 }

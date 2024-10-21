@@ -1,5 +1,6 @@
 package co.com.mercadolibre.features.search
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -77,6 +78,7 @@ fun MeliSearchBar(modifier: Modifier = Modifier) {
     ),
     onExpandedChange = viewModel::onExpandedChange,
   ) {
+    BackHandler(uiState.expanded, onBack = viewModel::onBackPressed)
     Surface(modifier = modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
       Box {
         Column {

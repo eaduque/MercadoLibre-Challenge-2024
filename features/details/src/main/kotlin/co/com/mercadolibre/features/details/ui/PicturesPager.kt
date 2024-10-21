@@ -52,7 +52,7 @@ internal fun PicturesPager(
         )
       }
       PicturesPositionIndicator(
-        currentPos = pagerState.currentPage.inc(),
+        currentPos = if (pagerState.pageCount > 0) pagerState.currentPage.inc() else 0,
         totalCount = pictures.size,
         modifier = Modifier.align(Alignment.TopStart)
       )

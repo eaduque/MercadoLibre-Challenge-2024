@@ -43,4 +43,8 @@ internal class ProductResultsViewModel @Inject constructor(
   fun onProductItemClick(productItem: ProductItem) {
     navigator.navigateTo(destination = ProductDetails, argument = productItem.id)
   }
+
+  fun onBackPressed() {
+    navigator.navigateBack()
+  }
 }

@@ -7,8 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import co.com.mercadolibre.core.navigation.NavigationAction
 import co.com.mercadolibre.core.navigation.Navigator
-import co.com.mercadolibre.core.navigation.PopUpToOptions.PopUpToDestination
-import co.com.mercadolibre.core.navigation.PopUpToOptions.PopUpToStart
 
 @Composable
 internal fun HandleNavigation(
@@ -23,7 +21,10 @@ internal fun HandleNavigation(
         is NavigationAction.NavigateTo -> navController.navigate(
           route = action.destination.route + if (action.query != null) "/${action.query}" else ""
         ) {
-          action.navOptions?.let { navOptions ->
+
+          // este es un ejemplo de cómo se podrían usar los navoptions
+          // para personalizar la navegación
+          /*action.navOptions?.let { navOptions ->
             navOptions.popUpToOptions?.let { popUpToOption ->
               when (popUpToOption) {
                 is PopUpToDestination -> {
@@ -40,10 +41,10 @@ internal fun HandleNavigation(
                 }
               }
             }
-          }
+          }*/
         }
 
-        NavigationAction.NavigateBack -> navController.popBackStack()
+        is NavigationAction.NavigateBack -> navController.popBackStack()
       }
     }
   }

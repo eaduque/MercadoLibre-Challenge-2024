@@ -42,4 +42,6 @@ internal class ProductDetailsViewModel @Inject constructor(
       }
     }
   }
+
+  fun onBackPressed() = navigator.navigateBack()
 }

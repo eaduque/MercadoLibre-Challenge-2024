@@ -1,5 +1,6 @@
 package co.com.mercadolibre.features.results
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -32,6 +33,8 @@ internal fun ProductResultsRoute(
   viewModel: ProductResultsViewModel = hiltViewModel(),
 ) {
   val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+  BackHandler(onBack = viewModel::onBackPressed)
 
   ProductResultsScreen(
     uiState = uiState,

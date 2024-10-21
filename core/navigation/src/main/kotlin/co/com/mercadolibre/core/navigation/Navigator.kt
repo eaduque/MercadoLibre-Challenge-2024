@@ -24,6 +24,6 @@ class Navigator @Inject constructor() {
   }
 
   fun navigateBack() {
-    _navigationActions.tryEmit(NavigateBack)
+    _navigationActions.tryEmit(NavigateBack())
   }
 }

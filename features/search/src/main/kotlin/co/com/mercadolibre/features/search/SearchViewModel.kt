@@ -74,4 +74,10 @@ internal class SearchViewModel @Inject constructor(
   fun onSuggestionClick(suggestionItem: SuggestionItem) {
     onSearch(suggestionItem.suggestion)
   }
+
+  fun onBackPressed() {
+    if (uiState.value.expanded) {
+      onExpandedChange(false)
+    }
+  }
 }
