@@ -13,6 +13,10 @@ import java.net.HttpURLConnection.HTTP_UNAUTHORIZED
 import java.net.HttpURLConnection.HTTP_UNAVAILABLE
 import javax.inject.Inject
 
+/**
+ * Esta clase se encarga de transformar los errores de la aplicación en [ErrorEntity] que son errores
+ * que nuestro dominio de la aplicación conoce y sabe cómo manejarlos.
+ */
 internal class ErrorHandlerImpl @Inject constructor() : ErrorHandler {
 
   override fun getError(throwable: Throwable): ErrorEntity {
@@ -25,6 +29,7 @@ internal class ErrorHandlerImpl @Inject constructor() : ErrorHandler {
         HTTP_FORBIDDEN -> ApiError.AccessDenied
         HTTP_CONFLICT -> ApiError.Conflict
         HTTP_UNAVAILABLE -> ApiError.ServiceUnavailable
+        // Agregar más casos según sea necesario....
         else -> ErrorEntity.Unknown
       }
 

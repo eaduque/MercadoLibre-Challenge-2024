@@ -1,5 +1,9 @@
 package co.com.mercadolibre.core.common.domain
 
+/**
+ * Este archivo contiene las entidades de error. Se utilizan para manejar los errores de la aplicación.
+ * Acá se pueden agregar nuevos tipos de errores los cuales serán manejados por el [ErrorHandler].
+ */
 sealed class ErrorEntity {
 
   sealed class ApiError : ErrorEntity() {

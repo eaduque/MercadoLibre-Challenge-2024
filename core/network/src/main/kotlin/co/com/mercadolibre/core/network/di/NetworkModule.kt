@@ -29,6 +29,10 @@ internal object NetworkModule {
   @Singleton
   fun providesBaseURL(): String = BuildConfig.MELI_BASE_URL
 
+  /**
+   * No encontré la URL que me permitiera hacer los queries de sugerencias. Por eso usé la URL de
+   * producción para obtener los resultados de búsqueda.
+   */
   @MeliProdBaseURL
   @Provides
   @Singleton
@@ -41,7 +45,7 @@ internal object NetworkModule {
   @Provides
   @Singleton
   fun okHttpCallFactory(
-    networkMonitor: NetworkMonitor
+    networkMonitor: NetworkMonitor,
   ): Call.Factory = OkHttpClient.Builder()
     .addInterceptor(
       HttpLoggingInterceptor().apply {

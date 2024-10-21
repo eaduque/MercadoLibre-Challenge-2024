@@ -13,6 +13,9 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
+/**
+ * Este composable se encarga de mantener el estado de la aplicación.
+ */
 @Composable
 internal fun rememberMeliAppState(
   networkMonitor: NetworkMonitor,
@@ -30,6 +33,11 @@ internal fun rememberMeliAppState(
   }
 }
 
+/**
+ * El estado de la aplicación.
+ *
+ * Se marca como Stable para que no se recomponga los componentes que no cambian.
+ */
 @Stable
 internal class MeliAppState(
   coroutineScope: CoroutineScope,

@@ -12,9 +12,17 @@ import co.com.mercadolibre.features.results.domain.model.Shipping
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ * Estas utilidades permiten pasar de los modelos de la api a los modelos de nuestro dominio.
+ */
+
+/**
+ * Se convierten los modelos de la api a los modelos de nuestro dominio.
+ */
 internal fun ProductItemApi.toDomain() = ProductItem(
   id = id,
   title = title,
+  // Uso este template para cargar las imagenes en una calidad alta.
   thumbnail = "https://http2.mlstatic.com/D_Q_NP_2X_$thumbnailId-V.jpg",
   officialStoreName = officialStoreName,
   priceDetails = getDomainPrice(currencyId, price, originalPrice),
@@ -22,7 +30,14 @@ internal fun ProductItemApi.toDomain() = ProductItem(
   installments = installments?.toDomain()
 )
 
-internal fun getDomainPrice(currencyId: String, price: Double, originalPrice: Double): PriceDetails {
+/**
+ * Se obtienen los detalles del precio del producto en un formato de fácil uso en el dominio.
+ */
+internal fun getDomainPrice(
+  currencyId: String,
+  price: Double,
+  originalPrice: Double,
+): PriceDetails {
   val discountPercentage = calculateDiscountPercentage(price, originalPrice)
 
   return PriceDetails(
@@ -33,21 +48,33 @@ internal fun getDomainPrice(currencyId: String, price: Double, originalPrice: Do
   )
 }
 
+/**
+ * Se obtiene el locale de acuerdo a la moneda.
+ */
 internal fun getLocaleByCurrency(currencyId: String): Locale {
   return when (currencyId) {
     "COP" -> Locale("es", "CO")
     "USD" -> Locale("en", "US")
+    // Agregar más casos según sea necesario
     else -> Locale.getDefault()
   }
 }
 
+
+/**
+ * Se formatea el precio de acuerdo a la moneda.
+ */
 internal fun formatPrice(currencyId: String, price: Double): String {
   val locale = getLocaleByCurrency(currencyId)
   val numberFormat = NumberFormat.getCurrencyInstance(locale)
+  // Generalmente, los precios colombianos no muestran los centavos. Por eso elimino los decimales.
   if (currencyId == "COP") numberFormat.maximumFractionDigits = 0
   return numberFormat.format(price)
 }
 
+/**
+ * Se calcula el descuento de un producto asegurándome de redondear el valor al convertirlo a un Int.
+ */
 internal fun calculateDiscountPercentage(price: Double, originalPrice: Double): Int {
   return if (originalPrice > 0) {
     ((originalPrice - price) / originalPrice * 100).toInt()
@@ -56,6 +83,9 @@ internal fun calculateDiscountPercentage(price: Double, originalPrice: Double): 
   }
 }
 
+/**
+ * Se convierten los modelos de la api a los modelos de nuestro dominio.
+ */
 internal fun ShippingApi.toDomain() = Shipping(
   free = free,
   logisticType = when (logisticType) {
@@ -65,6 +95,9 @@ internal fun ShippingApi.toDomain() = Shipping(
   }
 )
 
+/**
+ * Se convierten los modelos de la api a los modelos de nuestro dominio.
+ */
 internal fun InstallmentsApi.toDomain(): Installments {
   return Installments(
     quantity = quantity,

@@ -2,4 +2,6 @@
 <resources>
   <string name="core_designsystem_no_connection">Sin internet</string>
   <string name="core_designsystem_back_online">En línea</string>
+  <string name="core_designsystem_free_shipping_tag">Envío gratis</string>
+  <string name="core_designsystem_enviado_por_tag">Enviado por</string>
 </resources>

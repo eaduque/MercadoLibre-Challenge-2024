@@ -50,7 +50,7 @@ fun MeliSearchBar(modifier: Modifier = Modifier) {
   val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
   val searchBarPadding by animateDpAsState(
-    targetValue = if(uiState.expanded) 0.dp else 16.dp,
+    targetValue = if (uiState.expanded) 0.dp else 16.dp,
     label = "Search bar padding"
   )
   Box(

@@ -6,9 +6,12 @@ import retrofit2.http.Query
 
 internal interface ProductsApi {
 
+  /**
+   * Se consulta la api con el searchQuery y el offset. el offset permite realizar el paginado de los resultados.
+   */
   @GET("sites/MCO/search")
   suspend fun fetchProducts(
     @Query("q") searchQuery: String,
-    @Query("offset") offset: Int
+    @Query("offset") offset: Int,
   ): ProductsQueryResponseApi
 }

@@ -2,7 +2,6 @@ package co.com.mercadolibre.features.details.data
 
 import co.com.mercadolibre.features.details.data.model.PictureApi
 import co.com.mercadolibre.features.details.data.model.ProductApi
-import co.com.mercadolibre.features.details.data.model.ProductDescriptionApi
 import co.com.mercadolibre.features.details.domain.model.Picture
 import co.com.mercadolibre.features.details.domain.model.Product
 

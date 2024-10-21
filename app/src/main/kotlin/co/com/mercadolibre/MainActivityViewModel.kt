@@ -23,8 +23,10 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
 
   init {
     viewModelScope.launch {
+      // Simular un delay para mostrar el splash screen
       delay(100)
       _uiState.update { it.copy(isAnimatedIconAtEnd = true) }
+      // Simular un delay para ocultar el splash screen mientras finaliza la animación
       delay(800)
       _uiState.update { it.copy(isOnSplashScreen = false) }
     }

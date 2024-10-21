@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
-  <string name="search_on_mercado_libre">Buscar en Mercado Libre</string>
+  <string name="something_went_wrong">Algo salió mal</string>
+  <string name="please_try_again">Por favor, intenta de nuevo.</string>
 </resources>

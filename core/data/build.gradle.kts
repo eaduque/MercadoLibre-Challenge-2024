@@ -6,6 +6,7 @@ plugins {
 android {
   namespace = "co.com.mercadolibre.core.data"
 
+  @Suppress("UnstableApiUsage")
   testOptions {
     unitTests {
       isIncludeAndroidResources = true

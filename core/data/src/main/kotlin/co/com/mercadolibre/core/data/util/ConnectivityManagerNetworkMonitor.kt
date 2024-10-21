@@ -20,6 +20,11 @@ import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
+/**
+ * El propósito de esta clase es verificar si el dispositivo está conectado a Internet.
+ * Se usa el [ConnectivityManager] para verificar la conexión. Es una manera de centralaizar
+ * esta lógica en un solo lugar.
+ */
 internal class ConnectivityManagerNetworkMonitor @Inject constructor(
   @ApplicationContext private val context: Context,
   @Dispatcher(IO) private val ioDispatcher: CoroutineDispatcher,

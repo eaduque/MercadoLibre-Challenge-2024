@@ -36,7 +36,6 @@ fun MeliAsyncImage(
     onState = { state ->
       isLoading = state is Loading
       isError = state is Error
-      if (state is Error) println("ALEXX -> ${state.result.throwable.toString()}")
     },
   )
   val isLocalInspection = LocalInspectionMode.current

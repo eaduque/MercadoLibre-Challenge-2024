@@ -19,6 +19,9 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+/**
+ * Este repositorio retorna un flujo de datos de tipo PagingData<ProductItem> permitiendo paginar los resultados.
+ */
 internal class ProductsRepositoryImpl @Inject constructor(
   private val productsApi: ProductsApi,
   private val errorHandler: ErrorHandler,
@@ -31,6 +34,7 @@ internal class ProductsRepositoryImpl @Inject constructor(
       pagingSourceFactory = { ProductsRemoteDataSource(productsApi, searchQuery) }
     ).flow
       .flowOn(ioDispatcher)
+      // Se transforma el objeto ProductItemApi a ProductItem del dominio
       .map { pagingData -> pagingData.map { it.toDomain() } }
       .catch { emit(PagingData.empty()) }
   }

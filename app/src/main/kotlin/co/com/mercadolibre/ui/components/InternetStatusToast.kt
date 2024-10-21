@@ -22,6 +22,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import co.com.mercadolibre.core.designsystem.R
 
+/**
+ * Un simple composable que muestra un mensaje de error cuando el dispositivo no tiene conexión a internet.
+ * El mensaje es permantente y se oculta cuando el dispositivo vuelve a tener conexión a internet.
+ */
 @Composable
 fun InternetStatusToast(
   isOffline: Boolean,

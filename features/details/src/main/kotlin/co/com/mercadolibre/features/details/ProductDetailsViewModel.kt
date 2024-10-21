@@ -35,7 +35,7 @@ internal class ProductDetailsViewModel @Inject constructor(
         val result = productDetailsUseCase(productId)
         when (result) {
           is Success -> _uiState.update { it.copy(product = result.data) }
-          is Error -> {}
+          is Error -> _uiState.update { it.copy(error = result.error.toString()) }
         }.also {
           _uiState.update { it.copy(isLoading = false) }
         }

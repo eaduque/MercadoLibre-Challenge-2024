@@ -7,6 +7,9 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import javax.inject.Inject
 
+/**
+ * Esta clase es el contenedor de un flujo de acciones de navegación.
+ */
 class Navigator @Inject constructor() {
 
   private val _navigationActions = MutableSharedFlow<NavigationAction>(
@@ -18,7 +21,7 @@ class Navigator @Inject constructor() {
   fun navigateTo(
     destination: NavDestination,
     navOptions: NavOptions? = null,
-    argument: String? = null
+    argument: String? = null,
   ) {
     _navigationActions.tryEmit(NavigateTo(destination, navOptions, argument))
   }

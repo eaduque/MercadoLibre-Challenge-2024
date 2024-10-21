@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,6 +19,12 @@ import co.com.mercadolibre.core.designsystem.component.AnimatedVectorDrawable
 import co.com.mercadolibre.features.search.MeliSearchBar
 import co.com.mercadolibre.navigation.MeliNavHost
 
+/**
+ * El punto de entrada de la aplicación.
+ *
+ * Se provee un [Scaffold] con un [MeliSearchBar] en la parte superior que sólo se muestra si no se está
+ * en el modo splash screen.
+ */
 @Composable
 internal fun MeliApp(
   appState: MeliAppState,
@@ -36,6 +41,9 @@ internal fun MeliApp(
   }
 }
 
+/**
+ * Es la pantalla principal de la aplicación que contiene el [MeliNavHost].
+ */
 @Composable
 internal fun MainScreen(appState: MeliAppState, modifier: Modifier = Modifier) {
   val uiState = appState.uiState
@@ -53,6 +61,9 @@ internal fun MainScreen(appState: MeliAppState, modifier: Modifier = Modifier) {
   }
 }
 
+/**
+ * Es la pantalla de splash screen de la aplicación. Simula un splash screen real con una animación.
+ */
 @Composable
 fun SplashScreen(isAnimatedIconAtEnd: Boolean, modifier: Modifier = Modifier) {
   Box(

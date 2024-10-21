@@ -8,6 +8,10 @@ import androidx.navigation.NavHostController
 import co.com.mercadolibre.core.navigation.NavigationAction
 import co.com.mercadolibre.core.navigation.Navigator
 
+/**
+ * Maneja las acciones de navegación que se producen en el [Navigator].
+ * Las acciones de navegación se producen cuando se llama a [Navigator.navigateTo] o [Navigator.navigateBack].
+ */
 @Composable
 internal fun HandleNavigation(
   navigator: Navigator,
@@ -22,8 +26,8 @@ internal fun HandleNavigation(
           route = action.destination.route + if (action.query != null) "/${action.query}" else ""
         ) {
 
-          // este es un ejemplo de cómo se podrían usar los navoptions
-          // para personalizar la navegación
+          // Este es un ejemplo de cómo se podrían usar los navOptions para personalizar la navegación.
+          // Para efectos de este challenge no es necesario esta implementación avanzada.
           /*action.navOptions?.let { navOptions ->
             navOptions.popUpToOptions?.let { popUpToOption ->
               when (popUpToOption) {

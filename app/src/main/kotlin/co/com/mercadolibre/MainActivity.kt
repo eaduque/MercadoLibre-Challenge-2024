@@ -28,10 +28,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-  @Inject
-  lateinit var networkMonitor: NetworkMonitor
-  @Inject
-  lateinit var navigator: Navigator
+  @Inject lateinit var networkMonitor: NetworkMonitor
+  @Inject lateinit var navigator: Navigator
   private val viewModel: MainActivityViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
