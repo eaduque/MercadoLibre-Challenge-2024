@@ -27,7 +27,7 @@ import co.com.mercadolibre.core.designsystem.R
  * El mensaje es permantente y se oculta cuando el dispositivo vuelve a tener conexión a internet.
  */
 @Composable
-fun InternetStatusToast(
+internal fun InternetStatusToast(
   isOffline: Boolean,
   modifier: Modifier = Modifier,
 ) {

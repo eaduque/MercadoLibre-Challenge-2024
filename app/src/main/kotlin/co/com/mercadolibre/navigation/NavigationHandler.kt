@@ -26,9 +26,11 @@ internal fun HandleNavigation(
           route = action.destination.route + if (action.query != null) "/${action.query}" else ""
         ) {
 
-          // Este es un ejemplo de cómo se podrían usar los navOptions para personalizar la navegación.
-          // Para efectos de este challenge no es necesario esta implementación avanzada.
-          /*action.navOptions?.let { navOptions ->
+          /*
+          >> Este es un ejemplo de cómo se podrían usar los navOptions para personalizar la navegación.
+          >> Para efectos de este challenge no es necesario esta implementación avanzada.
+
+           action.navOptions?.let { navOptions ->
             navOptions.popUpToOptions?.let { popUpToOption ->
               when (popUpToOption) {
                 is PopUpToDestination -> {

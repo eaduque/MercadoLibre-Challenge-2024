@@ -45,6 +45,9 @@ internal fun BoxScope.MeliNavHost(
     startDestination = Home.route,
     modifier = modifier.fillMaxSize(),
   ) {
+    /* Debido a la simplicidad de la app se agrena rutas simples para cada pantalla. Pero se podrían
+     * agregar rutas anidades.
+     */
     homeScreen()
     productResultsScreen()
     productDetailsScreen()

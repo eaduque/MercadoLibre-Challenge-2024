@@ -11,6 +11,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Este ViewModel se usa para manejar el estado de la actividad principal.
+ * Sirve para casos más complejos donde, por ejemplo, se necesite sacar al usuario de alguna
+ * pantalla específica (soliticando permisos, etc).
+ */
 @HiltViewModel
 class MainActivityViewModel @Inject constructor() : ViewModel() {
 

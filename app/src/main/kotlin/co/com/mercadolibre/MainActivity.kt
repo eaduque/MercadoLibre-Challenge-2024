@@ -33,6 +33,8 @@ class MainActivity : ComponentActivity() {
   private val viewModel: MainActivityViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    // Instalamos el SplashScreen de Jetpack Compose e intentamos remover las animaciones por defecto.
+    // Esto se hace para que, al pasar del splashScreen a MeliApp, se vea un splashScreen más agradable.
     installSplashScreen().apply {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         setOnExitAnimationListener { it.remove() }
@@ -42,6 +44,7 @@ class MainActivity : ComponentActivity() {
 
     var uiState: MainActivityUIState by mutableStateOf(MainActivityUIState())
 
+    // Se colecta el estado del ViewModel cuando la actividad está en el estado STARTED. (Visible)
     lifecycleScope.launch {
       lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
         viewModel.uiState
@@ -55,6 +58,7 @@ class MainActivity : ComponentActivity() {
     setContent {
       val appState = rememberMeliAppState(networkMonitor, uiState)
 
+      // Manejamos la navegación de la aplicación.
       HandleNavigation(navigator, appState.navController)
 
       MeliTheme {
