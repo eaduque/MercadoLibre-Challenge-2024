@@ -3,8 +3,7 @@ package co.com.mercadolibre.features.results
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.com.mercadolibre.core.common.result.Result.Error
-import co.com.mercadolibre.core.common.result.Result.Success
+import androidx.paging.cachedIn
 import co.com.mercadolibre.core.navigation.NavDestination.ProductDetails
 import co.com.mercadolibre.core.navigation.Navigator
 import co.com.mercadolibre.features.results.domain.model.ProductItem
@@ -34,12 +33,8 @@ internal class ProductResultsViewModel @Inject constructor(
   init {
     savedStateHandle.get<String>("query")?.let { query ->
       viewModelScope.launch {
-        val result = productsUseCase(query)
-        when (result) {
-          is Success -> _uiState.update { it.copy(products = result.data) }
-          is Error -> {}
-        }.also {
-          _uiState.update { it.copy(isLoading = false) }
+        productsUseCase(query).cachedIn(viewModelScope).collect { products ->
+          _uiState.update { it.copy(isLoading = false, products = products) }
         }
       }
     }

@@ -8,7 +8,17 @@ internal data class ProductsQueryResponseApi(
   @SerialName("site_id")
   val siteId: String,
   val query: String,
+  val paging: PagingApi,
   val results: List<ProductItemApi>,
+)
+
+@Serializable
+internal data class PagingApi(
+  val total: Int,
+  val offset: Int,
+  val limit: Int,
+  @SerialName("primary_results")
+  val primaryResults: Int,
 )
 
 @Serializable

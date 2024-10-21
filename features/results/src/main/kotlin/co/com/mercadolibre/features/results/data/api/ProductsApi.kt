@@ -7,5 +7,8 @@ import retrofit2.http.Query
 internal interface ProductsApi {
 
   @GET("sites/MCO/search")
-  suspend fun fetchProducts(@Query("q") searchQuery: String): ProductsQueryResponseApi
+  suspend fun fetchProducts(
+    @Query("q") searchQuery: String,
+    @Query("offset") offset: Int
+  ): ProductsQueryResponseApi
 }
