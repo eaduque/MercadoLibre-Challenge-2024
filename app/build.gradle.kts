@@ -43,6 +43,7 @@ dependencies {
   implementation(projects.core.designsystem)
   implementation(projects.core.network)
 
+  implementation(projects.features.details)
   implementation(projects.features.results)
   implementation(projects.features.search)
 

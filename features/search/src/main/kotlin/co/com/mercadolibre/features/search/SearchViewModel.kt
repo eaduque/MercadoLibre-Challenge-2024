@@ -52,7 +52,7 @@ internal class SearchViewModel @Inject constructor(
   }
 
   fun onSearch(query: String) {
-    navigator.navigateTo(destination = ProductResults, query = query)
+    navigator.navigateTo(destination = ProductResults, argument = query)
     _uiState.update { it.copy(searchQuery = query, expanded = false) }
   }
 

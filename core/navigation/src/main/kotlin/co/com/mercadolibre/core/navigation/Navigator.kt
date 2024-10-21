@@ -18,9 +18,9 @@ class Navigator @Inject constructor() {
   fun navigateTo(
     destination: NavDestination,
     navOptions: NavOptions? = null,
-    query: String? = null
+    argument: String? = null
   ) {
-    _navigationActions.tryEmit(NavigateTo(destination, navOptions, query))
+    _navigationActions.tryEmit(NavigateTo(destination, navOptions, argument))
   }
 
   fun navigateBack() {

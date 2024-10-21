@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import co.com.mercadolibre.features.details.navigation.productDetailsScreen
 import co.com.mercadolibre.features.results.navigation.productResultsScreen
 import co.com.mercadolibre.ui.MeliAppState
 
@@ -24,6 +25,7 @@ internal fun MeliNavHost(
   ) {
     homeScreen()
     productResultsScreen()
+    productDetailsScreen()
   }
 }
 

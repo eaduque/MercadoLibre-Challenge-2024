@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ProductsQueryResponseApi(
+internal data class ProductsQueryResponseApi(
   @SerialName("site_id")
   val siteId: String,
   val query: String,
@@ -12,7 +12,7 @@ data class ProductsQueryResponseApi(
 )
 
 @Serializable
-data class ProductItemApi(
+internal data class ProductItemApi(
   val id: String,
   val title: String,
   @SerialName("thumbnail_id")
@@ -29,7 +29,7 @@ data class ProductItemApi(
 )
 
 @Serializable
-data class ShippingApi(
+internal data class ShippingApi(
   @SerialName("free_shipping")
   val free: Boolean,
   @SerialName("logistic_type")
@@ -37,7 +37,7 @@ data class ShippingApi(
 )
 
 @Serializable
-data class InstallmentsApi(
+internal data class InstallmentsApi(
   val quantity: Int,
   val amount: Double,
   val rate: Int,

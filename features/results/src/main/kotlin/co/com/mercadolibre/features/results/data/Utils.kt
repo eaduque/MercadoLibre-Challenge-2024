@@ -12,7 +12,7 @@ import co.com.mercadolibre.features.results.domain.model.Shipping
 import java.text.NumberFormat
 import java.util.Locale
 
-fun ProductItemApi.toDomain() = ProductItem(
+internal fun ProductItemApi.toDomain() = ProductItem(
   id = id,
   title = title,
   thumbnail = "https://http2.mlstatic.com/D_Q_NP_2X_$thumbnailId-V.jpg",
@@ -22,7 +22,7 @@ fun ProductItemApi.toDomain() = ProductItem(
   installments = installments?.toDomain()
 )
 
-fun getDomainPrice(currencyId: String, price: Double, originalPrice: Double): PriceDetails {
+internal fun getDomainPrice(currencyId: String, price: Double, originalPrice: Double): PriceDetails {
   val discountPercentage = calculateDiscountPercentage(price, originalPrice)
 
   return PriceDetails(
@@ -33,7 +33,7 @@ fun getDomainPrice(currencyId: String, price: Double, originalPrice: Double): Pr
   )
 }
 
-fun getLocaleByCurrency(currencyId: String): Locale {
+internal fun getLocaleByCurrency(currencyId: String): Locale {
   return when (currencyId) {
     "COP" -> Locale("es", "CO")
     "USD" -> Locale("en", "US")
@@ -41,14 +41,14 @@ fun getLocaleByCurrency(currencyId: String): Locale {
   }
 }
 
-fun formatPrice(currencyId: String, price: Double): String {
+internal fun formatPrice(currencyId: String, price: Double): String {
   val locale = getLocaleByCurrency(currencyId)
   val numberFormat = NumberFormat.getCurrencyInstance(locale)
   if (currencyId == "COP") numberFormat.maximumFractionDigits = 0
   return numberFormat.format(price)
 }
 
-fun calculateDiscountPercentage(price: Double, originalPrice: Double): Int {
+internal fun calculateDiscountPercentage(price: Double, originalPrice: Double): Int {
   return if (originalPrice > 0) {
     ((originalPrice - price) / originalPrice * 100).toInt()
   } else {
@@ -56,7 +56,7 @@ fun calculateDiscountPercentage(price: Double, originalPrice: Double): Int {
   }
 }
 
-fun ShippingApi.toDomain() = Shipping(
+internal fun ShippingApi.toDomain() = Shipping(
   free = free,
   logisticType = when (logisticType) {
     "fulfillment" -> LogisticType.FULFILLMENT
@@ -65,7 +65,7 @@ fun ShippingApi.toDomain() = Shipping(
   }
 )
 
-fun InstallmentsApi.toDomain(): Installments {
+internal fun InstallmentsApi.toDomain(): Installments {
   return Installments(
     quantity = quantity,
     amount = Price(amount, formatPrice(currencyId, amount)),

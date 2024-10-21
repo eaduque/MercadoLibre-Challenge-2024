@@ -11,7 +11,7 @@ fun NavGraphBuilder.productResultsScreen() {
   composable(
     route = ProductResults.route + "/{query}",
     arguments = listOf(navArgument("query") { type = NavType.StringType })
-  ) { backStackEntry ->
+  ) {
     ProductResultsRoute()
   }
 }

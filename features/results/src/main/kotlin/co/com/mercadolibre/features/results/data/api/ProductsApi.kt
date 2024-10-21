@@ -4,8 +4,8 @@ import co.com.mercadolibre.features.results.data.model.ProductsQueryResponseApi
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ProductsApi {
+internal interface ProductsApi {
 
-  @GET("/sites/MCO/search")
+  @GET("sites/MCO/search")
   suspend fun fetchProducts(@Query("q") searchQuery: String): ProductsQueryResponseApi
 }

@@ -34,5 +34,6 @@ include(":core:designsystem")
 include(":core:navigation")
 include(":core:network")
 
+include(":features:details")
 include(":features:results")
 include(":features:search")

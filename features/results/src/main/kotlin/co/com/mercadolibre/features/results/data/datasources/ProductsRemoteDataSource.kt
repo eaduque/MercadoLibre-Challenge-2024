@@ -8,7 +8,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class ProductsRemoteDataSource @Inject constructor(
+internal class ProductsRemoteDataSource @Inject constructor(
   private val productsApi: ProductsApi,
   @Dispatcher(IO) private val ioDispatcher: CoroutineDispatcher,
 ) {

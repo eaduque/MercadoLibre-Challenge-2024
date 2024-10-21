@@ -5,7 +5,7 @@ import co.com.mercadolibre.features.results.domain.model.ProductItem
 import co.com.mercadolibre.features.results.domain.repositories.ProductsRepository
 import javax.inject.Inject
 
-class ProductsUseCase @Inject constructor(private val productsRepository: ProductsRepository) {
+internal class ProductsUseCase @Inject constructor(private val productsRepository: ProductsRepository) {
 
   suspend operator fun invoke(query: String): Result<List<ProductItem>> {
     return productsRepository.searchProducts(query)

@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import co.com.mercadolibre.core.designsystem.theme.MeliTheme
 
 @Composable
-fun LoadingWidget(modifier: Modifier = Modifier) {
+internal fun LoadingWidget(modifier: Modifier = Modifier) {
   CircularProgressIndicator(
     modifier = modifier.size(64.dp),
     strokeWidth = 4.dp,

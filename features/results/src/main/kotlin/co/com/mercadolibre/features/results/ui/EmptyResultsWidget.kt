@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import co.com.mercadolibre.core.designsystem.icon.MeliIcons
 
 @Composable
-fun EmptyResultsWidget(modifier: Modifier = Modifier) {
+internal fun EmptyResultsWidget(modifier: Modifier = Modifier) {
   Column(
     modifier = modifier,
     horizontalAlignment = Alignment.CenterHorizontally

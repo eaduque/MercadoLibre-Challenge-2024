@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -38,10 +39,11 @@ import co.com.mercadolibre.features.results.domain.model.LogisticType
 import co.com.mercadolibre.features.results.domain.model.ProductItem
 
 @Composable
-fun ProductItem(
+internal fun ProductItem(
   product: ProductItem,
   includeTopDivider: Boolean,
   modifier: Modifier = Modifier,
+  onClick: (ProductItem) -> Unit,
 ) {
   var isMarkedAsFavorite by rememberSaveable { mutableStateOf(false) }
 
@@ -49,8 +51,8 @@ fun ProductItem(
     if (includeTopDivider) HorizontalDivider(color = DividerDefaults.color.copy(alpha = 0.3f))
     Row(
       modifier = Modifier
-        .background(Color.White)
-        .clickable { }
+        .background(MaterialTheme.colorScheme.background)
+        .clickable { onClick(product) }
         .padding(8.dp),
       horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {

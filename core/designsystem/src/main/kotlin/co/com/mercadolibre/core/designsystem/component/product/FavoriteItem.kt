@@ -25,7 +25,7 @@ fun FavoriteItem(
       onClick = onClick,
       modifier = Modifier
         .clip(CircleShape)
-        .background(Color.White.copy(alpha = 0.5f))
+        .background(Color.White.copy(alpha = 0.8f))
         .size(32.dp)
     ) {
       Icon(

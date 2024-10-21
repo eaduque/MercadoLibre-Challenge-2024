@@ -15,7 +15,7 @@ import co.com.mercadolibre.features.results.domain.model.Installments
 import co.com.mercadolibre.features.results.domain.model.Price
 
 @Composable
-fun InstallmentsItem(
+internal fun InstallmentsItem(
   installments: Installments,
   modifier: Modifier = Modifier,
 ) {

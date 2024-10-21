@@ -14,7 +14,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class ProductsRepositoryImpl @Inject constructor(
+internal class ProductsRepositoryImpl @Inject constructor(
   private val remoteDataSource: ProductsRemoteDataSource,
   private val errorHandler: ErrorHandler,
   @Dispatcher(IO) private val ioDispatcher: CoroutineDispatcher,
