@@ -1,5 +1,6 @@
 package co.com.mercadolibre.core.network.di
 
+import co.com.mercadolibre.core.data.util.NetworkMonitor
 import co.com.mercadolibre.core.network.BuildConfig
 import co.com.mercadolibre.core.network.interceptors.NetworkMonitorInterceptor
 import co.com.mercadolibre.core.network.qualifiers.MeliBaseURL
@@ -39,7 +40,9 @@ internal object NetworkModule {
 
   @Provides
   @Singleton
-  fun okHttpCallFactory(): Call.Factory = OkHttpClient.Builder()
+  fun okHttpCallFactory(
+    networkMonitor: NetworkMonitor
+  ): Call.Factory = OkHttpClient.Builder()
     .addInterceptor(
       HttpLoggingInterceptor().apply {
         if (BuildConfig.DEBUG) {
@@ -47,7 +50,7 @@ internal object NetworkModule {
         }
       }
     )
-    //.addInterceptor(NetworkMonitorInterceptor())
+    .addInterceptor(NetworkMonitorInterceptor(networkMonitor))
     .build()
 
   @MeliBasicRetrofit

@@ -2,6 +2,7 @@ package co.com.mercadolibre.features.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.com.mercadolibre.core.common.domain.ErrorEntity.ApiError.Network
 import co.com.mercadolibre.core.common.result.Result.Error
 import co.com.mercadolibre.core.common.result.Result.Success
 import co.com.mercadolibre.core.navigation.NavDestination.ProductResults
@@ -32,7 +33,7 @@ internal class SearchViewModel @Inject constructor(
   )
 
   fun onExpandedChange(isExpanded: Boolean) {
-    _uiState.update { it.copy(expanded = isExpanded) }
+    _uiState.update { it.copy(expanded = isExpanded, searchingError = null) }
   }
 
   fun onQueryChanged(newQuery: String) {
@@ -43,8 +44,14 @@ internal class SearchViewModel @Inject constructor(
     searchJob = viewModelScope.launch {
       val result = searchUseCase(newQuery)
       when (result) {
-        is Success -> _uiState.update { it.copy(suggestions = result.data) }
-        is Error -> {}
+        is Success -> _uiState.update { it.copy(suggestions = result.data, searchingError = null) }
+        is Error -> {
+          val error = when (result.error) {
+            Network -> R.string.search_error_network
+            else -> R.string.search_error_unknown
+          }
+          _uiState.update { it.copy(searchingError = error) }
+        }
       }.also {
         _uiState.update { it.copy(isLoading = false) }
       }
@@ -53,15 +60,15 @@ internal class SearchViewModel @Inject constructor(
 
   fun onSearch(query: String) {
     navigator.navigateTo(destination = ProductResults, argument = query)
-    _uiState.update { it.copy(searchQuery = query, expanded = false) }
+    _uiState.update { it.copy(searchQuery = query, expanded = false, searchingError = null) }
   }
 
   fun clearQuery() {
-    _uiState.update { it.copy(searchQuery = "") }
+    _uiState.update { it.copy(searchQuery = "", searchingError = null) }
   }
 
   fun leadingIconClick() {
-    _uiState.update { it.copy(expanded = !it.expanded) }
+    _uiState.update { it.copy(expanded = !it.expanded, searchingError = null) }
   }
 
   fun onSuggestionClick(suggestionItem: SuggestionItem) {

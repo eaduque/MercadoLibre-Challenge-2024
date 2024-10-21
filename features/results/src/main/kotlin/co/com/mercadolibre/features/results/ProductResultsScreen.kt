@@ -2,7 +2,11 @@ package co.com.mercadolibre.features.results
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -59,7 +63,12 @@ internal fun ProductResultsScreen(
         content = { EmptyResultsWidget() }
       )
 
-      LazyColumn {
+      LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(
+          bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+        )
+      ) {
         items(lazyProducts.itemCount) { index ->
           lazyProducts[index]?.let { product ->
             ProductItem(

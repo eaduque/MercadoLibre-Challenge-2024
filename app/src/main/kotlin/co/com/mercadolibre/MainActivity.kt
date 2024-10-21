@@ -13,6 +13,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import co.com.mercadolibre.core.data.util.NetworkMonitor
 import co.com.mercadolibre.core.designsystem.theme.MeliTheme
 import co.com.mercadolibre.core.navigation.Navigator
 import co.com.mercadolibre.navigation.HandleNavigation
@@ -27,7 +28,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-  @Inject lateinit var navigator: Navigator
+  @Inject
+  lateinit var networkMonitor: NetworkMonitor
+  @Inject
+  lateinit var navigator: Navigator
   private val viewModel: MainActivityViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +55,7 @@ class MainActivity : ComponentActivity() {
     enableEdgeToEdge()
 
     setContent {
-      val appState = rememberMeliAppState(uiState)
+      val appState = rememberMeliAppState(networkMonitor, uiState)
 
       HandleNavigation(navigator, appState.navController)
 

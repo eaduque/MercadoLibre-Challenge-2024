@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
   <string name="search_on_mercado_libre">Buscar en Mercado Libre</string>
+
+  <string name="search_error_network">Parece que no tienes internet :(</string>
+  <string name="search_error_unknown">Algo salio mal, intenta con una nueva búsqueda :)</string>
 </resources>

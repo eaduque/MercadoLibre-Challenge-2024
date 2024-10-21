@@ -1,5 +1,6 @@
 package co.com.mercadolibre.features.search
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,6 +31,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -88,6 +90,15 @@ fun MeliSearchBar(modifier: Modifier = Modifier) {
                 shape = RectangleShape,
               )
           )
+          AnimatedVisibility(uiState.searchingError != null, Modifier.fillMaxWidth()) {
+            Text(
+              modifier = Modifier.fillMaxWidth(),
+              text = stringResource(uiState.searchingError ?: R.string.search_error_unknown),
+              textAlign = TextAlign.Center,
+              style = MaterialTheme.typography.bodySmall,
+              color = MaterialTheme.colorScheme.error,
+            )
+          }
           LazyColumn {
             items(uiState.suggestions, key = { it.suggestion }) { suggestion ->
               SuggestionItem(suggestion) {
